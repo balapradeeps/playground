@@ -23,7 +23,7 @@ pipeline {
 		echo'Deliver Bundel'
 		sh '''touch hello.txt
 		echo "Shelby Family" >>hello.txt
-		docker build -t small-image -f jenki/ .
+		docker build -t small-image .
 		echo "Deliver Process Compleleted"
 		'''
 		  }
