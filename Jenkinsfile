@@ -1,4 +1,4 @@
-pipeline { 
+pipeline {
   agent any 
   stages {
     stage('Build') {
@@ -14,6 +14,7 @@ pipeline {
 	  echo 'Test Build-01'
 	  sh '''
 			echo "Test Build Started Now"
+			ls -la
 			'''
 		}
 	}
@@ -22,7 +23,7 @@ pipeline {
 		echo'Deliver Bundel'
 		sh '''touch hello.txt
 		echo "Shelby Family" >>hello.txt
-		docker build -t small-image -f /playground/jenki .
+		docker build -t small-image -f jenki .
 		echo "Deliver Process Compleleted"
 		'''
 		  }
