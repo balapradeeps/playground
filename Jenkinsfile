@@ -13,7 +13,7 @@ pipeline {
 	  steps {
 	  echo 'Test Build-01'
 	  sh '''
-			echo "Test Build Started Now
+			echo "Test Build Started Now"
 			'''
 		}
 	}
