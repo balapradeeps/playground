@@ -1,11 +1,14 @@
 pipeline {
   agent any 
+  environment {
+    DOCKERHUB_CREDENTIALS = credentials('DCH')
+  }
   stages {
     stage('Build') {
       steps { 
-        echo 'Build Bundel-01'
+        echo 'Build Bundle-01'
 	    sh ''' 
-		      echo "We are started the build bundel process"
+		      echo "We are started the build bundle process"
 			  '''
 		}
 	}
@@ -20,12 +23,20 @@ pipeline {
 	}
 	stage('Deliver'){
 	  steps {
-		echo'Deliver Bundel'
-		sh '''touch hello.txt
+		echo'Deliver Bundle'
+		sh '''
+  		touch hello.txt
 		echo "Shelby Family" >>hello.txt
 		docker build -t small-image .
-		echo "Deliver Process Compleleted"
+  		echo "Deliver Process Completed"
 		'''
+	 stage('Login') {
+      	   steps {
+           sh ''' 
+	   echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin 
+		'''
+      }
+    }
 		  }
 	    }
       }
