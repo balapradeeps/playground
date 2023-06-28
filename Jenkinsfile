@@ -7,7 +7,7 @@ pipeline {
     stage('Build') {
       steps { 
          when {
-        branch 'development'
+        branch 'develop'
       }
         echo 'Build Bundle-01'
 	    sh ''' 
