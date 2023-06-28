@@ -9,22 +9,24 @@ pipeline {
         echo 'Build Bundle-01'
 	    sh ''' 
 		      echo "We are started the build bundle process"
+			  touch hello.txt
+			  echo "Shelby Family" >>hello.txt
+			  docker build -t balapradeeps/mini-image:v1 .
 			  '''
 		}
 	}
-	stage('Testing'){
+	stage('Login'){
 	  steps {
-	  echo 'Test Build-01'
-	  sh '''
-			echo "Test Build Started Now"
-			ls -la
-			'''
+	  echo 'Login Process Started'
+	  sh ''' 
+	        echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin 
+		'''
 		}
 	}
-	stage('Login'){
+	stage('Push'){
       	  steps {
                 sh ''' 
-	        echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin 
+	        docker push balapradeeps/mini-image:v1 
 		'''
       }
     }
@@ -32,9 +34,6 @@ pipeline {
 	  steps {
 		echo'Deliver Bundle'
 		sh '''
-  		touch hello.txt
-		echo "Shelby Family" >>hello.txt
-		docker build -t small-image .
   		echo "Deliver Process Completed"
 		'''
 
