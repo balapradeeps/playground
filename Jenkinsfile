@@ -11,7 +11,7 @@ pipeline {
 		      echo "We are started the build bundle process"
 			  touch hello.txt
 			  echo "Shelby Family" >>hello.txt
-			  docker build -t balapradeeps/mini-image:v1 .
+			  docker build -t balapradeeps/mini-image:v2 .
 			  '''
 		}
 	}
@@ -25,8 +25,9 @@ pipeline {
 	}
 	stage('Push'){
       	  steps {
+	  echo 'images pushing to dockerhub'	  
                 sh ''' 
-	        docker push balapradeeps/mini-image:v1 
+	        docker push balapradeeps/mini-image:v2 
 		'''
       }
     }
