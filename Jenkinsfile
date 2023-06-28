@@ -6,6 +6,9 @@ pipeline {
   stages {
     stage('Build') {
       steps { 
+         when {
+        branch 'development'
+      }
         echo 'Build Bundle-01'
 	    sh ''' 
 		      echo "We are started the build bundle process"
