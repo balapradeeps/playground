@@ -36,7 +36,7 @@ pipeline {
 	  steps {
 		echo'Deliver Bundle'
 		sh '''
-  		echo "Deliver Process Completed"
+  		echo "Deliver Process Started and Completed"
 		'''
 
 		  }
